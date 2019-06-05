@@ -4,11 +4,11 @@ class Api::V1::ErrorSerializer < ActiveModel::Serializer
 
   def initialize(status, errors)
     @status = status
-    if errors.is_a? ActiveModel::Errors
-      @errors = parse_am_errors(errors)
-    else #it's an array or a string
-      @errors = [errors].flatten
-    end
+    @errors = if errors.is_a? ActiveModel::Errors
+                parse_am_errors(errors)
+              else # it's an array or a string
+                [errors].flatten
+              end
   end
 
   def as_json
@@ -57,16 +57,17 @@ class Api::V1::ErrorSerializer < ActiveModel::Serializer
   end
 
   def error_pointer(error)
-    if error.respond_to?(:pointer)
-      return error.pointer
-    else
-      return DEFAULT_POINTER
-    end
+    return error.pointer if error.respond_to?(:pointer)
+
+    DEFAULT_POINTER
   end
 
+  # ErrorDecorator to display the detail of error
   class ErrorDecorator
     def initialize(key, value, message)
-      @key, @value, @message = key, value, message
+      @key = key
+      @value = value
+      @message = message
     end
 
     def title
@@ -82,7 +83,7 @@ class Api::V1::ErrorSerializer < ActiveModel::Serializer
     end
 
     def pointer
-      "data/attributes/#{@key.to_s}"
+      "data/attributes/#{@key}"
     end
   end
 end

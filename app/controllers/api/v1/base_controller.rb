@@ -11,8 +11,8 @@ class Api::V1::BaseController < ActionController::API
     invalid_resource!
   end
 
-  rescue_from ActionController::RoutingError do |e|
-    routing_error!(e)
+  rescue_from ActionController::RoutingError do
+    routing_error!
   end
 
   rescue_from Exception do |e|
@@ -45,7 +45,7 @@ class Api::V1::BaseController < ActionController::API
   end
 
   # Routing error exception
-  def routing_error!(exception = nil)
+  def routing_error!
     api_error(status: :not_found, errors: 'Invalid/Undefined API')
   end
 
