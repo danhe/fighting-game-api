@@ -9,7 +9,7 @@ class Api::V1::CharactersController < Api::V1::BaseController
   # POST /api/v1/characters
   def create
     if @character.save
-      render json: @character, serializer: Api::V1::CharacterSerializer, status: 201
+      render json: @character, serializer: Api::V1::CharacterSerializer, status: :ok
     else
       invalid_resource!(@character.errors.full_messages)
     end
