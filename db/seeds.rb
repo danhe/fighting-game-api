@@ -17,13 +17,18 @@ Character.create([
 
 Weapon.create([
   {
-    name: 'Weapon1',
+    name: 'Elf Sword',
     experience_price: 150.0,
     additional_power: 0.1
   },
   {
-    name: 'Weapon2',
-    experience_price: 250.0,
-    additional_power: 0.2
+    name: 'Fire Sword',
+    experience_price: 350.0,
+    additional_power: 0.4
+  },
+  {
+    name: 'Space Sword',
+    experience_price: 650.0,
+    additional_power: 1
   }
 ])

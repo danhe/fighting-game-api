@@ -5,9 +5,13 @@ class Fighting < ApplicationRecord
   belongs_to :fighter_one, class_name: :Character
   belongs_to :fighter_two, class_name: :Character
 
+  # It can be empty, when not use weapons
+  belongs_to :fighter_one_weapon, class_name: :Weapon, optional: true
+  belongs_to :fighter_two_weapon, class_name: :Weapon, optional: true
+
   def start
     # Fight firstly
-    fighter_one.fight(fighter_two)
+    fighter_one.fight(fighter_two, weapons: weapons)
 
     # Set winner of this fighting
     set_winner
@@ -22,6 +26,14 @@ class Fighting < ApplicationRecord
 
   def loser_character
     fighter_one_wins? ? fighter_two : fighter_one
+  end
+
+  # All weapons
+  def weapons
+    {
+      fighter_one_weapon: fighter_one_weapon,
+      fighter_two_weapon: fighter_two_weapon
+    }
   end
 
   private

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_06_202412) do
+ActiveRecord::Schema.define(version: 2019_06_07_083835) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,8 +43,12 @@ ActiveRecord::Schema.define(version: 2019_06_06_202412) do
     t.boolean "winner_leveled_up", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "fighter_one_weapon_id"
+    t.bigint "fighter_two_weapon_id"
     t.index ["fighter_one_id"], name: "index_fightings_on_fighter_one_id"
+    t.index ["fighter_one_weapon_id"], name: "index_fightings_on_fighter_one_weapon_id"
     t.index ["fighter_two_id"], name: "index_fightings_on_fighter_two_id"
+    t.index ["fighter_two_weapon_id"], name: "index_fightings_on_fighter_two_weapon_id"
   end
 
   create_table "weapons", force: :cascade do |t|
@@ -57,4 +61,6 @@ ActiveRecord::Schema.define(version: 2019_06_06_202412) do
 
   add_foreign_key "fightings", "characters", column: "fighter_one_id"
   add_foreign_key "fightings", "characters", column: "fighter_two_id"
+  add_foreign_key "fightings", "weapons", column: "fighter_one_weapon_id"
+  add_foreign_key "fightings", "weapons", column: "fighter_two_weapon_id"
 end

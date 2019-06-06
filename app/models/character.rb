@@ -10,18 +10,27 @@ class Character < ApplicationRecord
   end
 
   # Fight with another fighter_two
-  def fight(fighter_two)
+  def fight(fighter_two, weapons: {})
     attack_arr = attack_array(fighter_two.level)
+    fighter_one_power = ajusted_power(weapons[:fighter_one_weapon])
+    fighter_two_power = fighter_two.ajusted_power(weapons[:fighter_two_weapon])
+
     # Fight until one character dies
     while current_life.positive? && fighter_two.current_life.positive?
       case attack_arr.sample
       when FIGHTER_TWO
-        self.current_life -= fighter_two.power
+        self.current_life -= fighter_two_power
       when FIGHTER_ONE
-        fighter_two.current_life -= power
+        fighter_two.current_life -= fighter_one_power
       end
     end
     save! && fighter_two.save!
+  end
+
+  def ajusted_power(weapon = nil)
+    return power if weapon.nil?
+
+    power + weapon.additional_power
   end
 
   # Reward experience to fighter_one.

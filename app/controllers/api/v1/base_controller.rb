@@ -1,6 +1,6 @@
 class Api::V1::BaseController < ActionController::API
-  rescue_from ActionController::ParameterMissing do
-    missing_params!
+  rescue_from ActionController::ParameterMissing do |e|
+    missing_params!(e)
   end
 
   rescue_from ActiveRecord::RecordNotFound do
@@ -30,8 +30,8 @@ class Api::V1::BaseController < ActionController::API
   protected
 
   # Missing parameters exception
-  def missing_params!
-    api_error(status: 400, errors: 'Invalid parameters')
+  def missing_params!(e)
+    api_error(status: 400, errors: e.message || 'Invalid parameters')
   end
 
   #  Not Found exception

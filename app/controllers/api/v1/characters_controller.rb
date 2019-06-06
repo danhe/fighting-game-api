@@ -3,7 +3,7 @@ class Api::V1::CharactersController < Api::V1::BaseController
 
   # GET /api/v1/characters
   def index
-    render json: @character, each_serializer: Api::V1::CharacterSerializer
+    render json: @character, each_serializer: Api::V1::CharacterSerializer, status: :ok
   end
 
   # POST /api/v1/characters
@@ -41,7 +41,7 @@ class Api::V1::CharactersController < Api::V1::BaseController
   def load_resource
     case params[:action].to_sym
     when :index
-      @character = Character.all
+      @character = Character.all.order(level: :desc, current_experience: :desc)
     when :create
       @character = Character.new(create_params)
     when :show, :update, :destroy
