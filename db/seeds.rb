@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-characters = Character.create([
+Character.create([
   {
     name: 'Hero'
   },
@@ -14,3 +14,16 @@ characters = Character.create([
     name: 'Monster'
   }]
 )
+
+Weapon.create([
+  {
+    name: 'Weapon1',
+    experience_price: 150.0,
+    additional_power: 0.1
+  },
+  {
+    name: 'Weapon2',
+    experience_price: 250.0,
+    additional_power: 0.2
+  }
+])
