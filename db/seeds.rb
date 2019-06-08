@@ -8,27 +8,44 @@
 
 Character.create([
   {
-    name: 'Hero'
+    name: 'Achille'
   },
   {
-    name: 'Monster'
+    name: 'Bellerophon'
+  },
+  {
+    name: 'Hercules'
+  },
+  {
+    name: 'Persée'
+  },
+  {
+    name: 'Ulysse'
+  },
+  {
+    name: 'Artémis'
   }]
 )
 
 Weapon.create([
   {
-    name: 'Elf Sword',
+    name: 'Trident de Poséidon',
     experience_price: 150.0,
     additional_power: 0.1
   },
   {
-    name: 'Fire Sword',
+    name: 'Botte de Hermes',
     experience_price: 350.0,
     additional_power: 0.4
   },
   {
-    name: 'Space Sword',
+    name: 'Char de Helios',
     experience_price: 650.0,
-    additional_power: 1
+    additional_power: 0.5
+  },
+  {
+    name: 'Faux de Deimos',
+    experience_price: 200.0,
+    additional_power: 0.2
   }
 ])
