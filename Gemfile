@@ -8,7 +8,7 @@ gem 'rails', '~> 5.2.3'
 # Use pg as the database for Active Record
 gem 'pg'
 # Use Puma as the app server
-gem 'puma', '~> 3.11'
+gem 'puma', '~> 3.12'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.5'
 # Build JSON APIs with AMS. Read more https://github.com/rails-api/active_model_serializers/tree/0-10-stable
